@@ -11,6 +11,11 @@ import "io"
 func (obj *Header) EncodeRLP(_w io.Writer) error {
 	w := rlp.NewEncoderBuffer(_w)
 	_tmp0 := w.List()
+	if obj.BlockHash == nil {
+		w.Write([]byte{0x80})
+	} else {
+		w.WriteBytes(obj.BlockHash[:])
+	}
 	w.WriteBytes(obj.ParentHash[:])
 	w.WriteBytes(obj.UncleHash[:])
 	w.WriteBytes(obj.Coinbase[:])

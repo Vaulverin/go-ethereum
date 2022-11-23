@@ -45,6 +45,7 @@ const (
 	LegacyTxType = iota
 	AccessListTxType
 	DynamicFeeTxType
+	ArbitrumTxType = 106
 )
 
 // Transaction is an Ethereum transaction.

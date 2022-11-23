@@ -153,6 +153,8 @@ func (t *Transaction) UnmarshalJSON(input []byte) error {
 			}
 		}
 
+	case ArbitrumTxType:
+		fallthrough
 	case AccessListTxType:
 		var itx AccessListTx
 		inner = &itx
