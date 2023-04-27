@@ -32,6 +32,7 @@ import (
 )
 
 type RpcClient interface {
+	IsHTTP() bool
 	CallContext(ctx context.Context, result interface{}, method string, args ...interface{}) error
 	BatchCallContext(ctx context.Context, b []rpc.BatchElem) error
 	EthSubscribe(ctx context.Context, channel interface{}, args ...interface{}) (*rpc.ClientSubscription, error)
@@ -63,6 +64,10 @@ func NewClient(c RpcClient) *Client {
 
 func (ec *Client) Close() {
 	ec.c.Close()
+}
+
+func (ec *Client) IsHTTP() bool {
+	return ec.c.IsHTTP()
 }
 
 // Blockchain Access
